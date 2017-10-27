@@ -1,0 +1,507 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <style>
+        body{
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+        }
+
+
+
+        .bg {
+            position: fixed;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(http://www.goodnewsfinland.com/wp-content/uploads/2016/04/man-and-a-computer_iStock_by_DeanDrobot.jpg) center center no-repeat;
+            background-size: cover;
+            z-index: -1;
+            filter: grayscale(100%) brightness(20%);
+        }
+        .bg2 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(255,255,255,0.6) !important;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .text p {
+            font-size: 40px;
+            letter-spacing: 2px;
+            width: 700px;
+            color:white !important;
+            font-weight: 100;
+            text-align: left;
+            display: block;
+            margin: 0 auto;
+            margin-top: 200px;
+
+
+        }
+
+        .move-letters {
+            animation: move-letters 1s ease-in-out forwards 1;
+
+        }
+
+        .text {
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            z-index: 99999999999999;
+            background: none;
+        }
+
+
+        .letters {
+            position: fixed;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .letters div {
+            z-index: -1;
+            width: 13%;
+            height: 100%;
+            text-align: center;
+            display: inline-block;
+            border-right: 2px solid rgba(255,255,255,0.07);
+            overflow: hidden;
+        }
+
+        .letters div h1 {
+            font-size: 150px;
+            color: rgba(255,255,255,0.15);
+            margin-top: 100px;
+            font-family: "Helvetica Neue", sans-serif;
+            font-weight: 100;
+            transform: translateX(-150px);
+
+        }
+
+        .show-letters {
+            animation: show-letters 1s ease-in-out forwards 1;
+        }
+
+        @keyframes show-letters {
+            0%{
+                opacity: 0;
+                transform: translateX(-150px);
+            }
+
+            100%{
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+        @keyframes move-letters {
+            0%{
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100%{
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 55px;
+        }
+
+        .logo h1 {
+            font-family: "Helvetica Neue", sans-serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: white;
+            font-size: 20px;
+        }
+
+        a.menu-trigger {
+            cursor: pointer;
+            display: block;
+            position: fixed;
+            right: 50px;
+            top: 30px;
+            width: 60px;
+            height: 40px;
+
+            text-indent: -9999em;
+        }
+
+        a.menu-trigger span,
+        a.menu-trigger span:before,
+        a.menu-trigger span:after {
+            -moz-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            -webkit-transition: all 0.4s;
+            transition: all 0.4s;
+            background-color: white;
+            display: block;
+            position: absolute;
+            width: 50px;
+            height: 1px;
+            left: 0;
+        }
+
+        a.menu-trigger span:before,
+        a.menu-trigger span:after {
+            content: "";
+        }
+
+        a.menu-trigger span {
+            top: 11px;
+        }
+
+        a.menu-trigger span:before {
+            -moz-transform-origin: 33% 100%;
+            -ms-transform-origin: 33% 100%;
+            -webkit-transform-origin: 33% 100%;
+            transform-origin: 33% 100%;
+            top: -11px;
+            z-index: 10;
+        }
+
+        a.menu-trigger span:after {
+            -moz-transform-origin: 33% 0;
+            -ms-transform-origin: 33% 0;
+            -webkit-transform-origin: 33% 0;
+            transform-origin: 33% 0;
+            top: 11px;
+        }
+
+        a.menu-trigger.active span,
+        a.menu-trigger.active span:before,
+        a.menu-trigger.active span:after {
+            background-color: transparent;
+        }
+
+        a.menu-trigger.active span:before {
+            -moz-transform: translateY(8px) translateX(1px) rotate(45deg);
+            -ms-transform: translateY(8px) translateX(1px) rotate(45deg);
+            -webkit-transform: translateY(8px) translateX(1px) rotate(45deg);
+            transform: translateY(8px) translateX(1px) rotate(45deg);
+            background-color: white;
+        }
+
+        a.menu-trigger.active span:after {
+            -moz-transform: translateY(-8px) translateX(1px) rotate(-45deg);
+            -ms-transform: translateY(-8px) translateX(1px) rotate(-45deg);
+            -webkit-transform: translateY(-8px) translateX(1px) rotate(-45deg);
+            transform: translateY(-8px) translateX(1px) rotate(-45deg);
+            background-color: white;
+        }
+
+        .stylespan{
+            font-size: 14px;
+            font-family: "Helvetica Neue",sans-serif;
+            font-weight: 100;
+            letter-spacing: 5px;
+            color: #49e6ae;
+            text-shadow:
+                    0 0 2px rgba(255,255,255,1),
+                    0 0 10px rgba(255,255,255,1),
+                    0 0 20px rgba(255,255,255,1),
+                    0 0 30px rgba(255,255,255,1),
+                    0 0 40px #49e6ae,
+                    0 0 70px #49e6ae,
+                    0 0 80px #49e6ae,
+                    0 0 100px #49e6ae;
+            text-transform: uppercase;
+
+        }
+
+        .text span {
+
+        }
+
+        .instructions {
+            position: fixed;
+            bottom: 60px;
+            text-align: center;
+            width: 100%;
+            height: 100px;
+            z-index: 99999999;
+        }
+
+        .instructions p {
+            color: white;
+            font-family: "Helvetica Neue",sans-serif;
+            font-weight: 100;
+            letter-spacing: 3px;
+            font-size: 12px;
+            text-shadow:
+                    0 0 2px rgba(255,255,255,1),
+                    0 0 10px rgba(255,255,255,1),
+                    0 0 20px rgba(255,255,255,1),
+                    0 0 30px rgba(255,255,255,1),
+                    0 0 40px #49e6ae,
+                    0 0 70px #49e6ae,
+                    0 0 80px #49e6ae,
+                    0 0 100px #49e6ae;
+        }
+
+        .circle {
+            display: block;
+            margin: 0 auto;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            border: 1px dotted #49e6ae;
+            background: none;
+            text-align: center;
+            box-shadow:0 0 8px #49e6ae, inset 0 0 8px #49e6ae;
+        }
+
+        .circle::after {
+            display: block;
+            content: "";
+            height: 100%;
+            width: 1px;
+            box-shadow:0 0 8px #49e6ae, inset 0 0 8px #49e6ae;
+            background: none;
+            display: block;
+            opacity: 0.3;
+            margin: 0 auto;
+            position: absolute;
+            left: 0;
+            border: 1px dotted #49e6ae;
+            right: 0;
+            top: 90px;
+        }
+
+        .circle h1 {
+            font-size: 17px;
+            color: #49e6ae;
+            animation: arrow 2s ease-in-out forwards infinite;
+            font-family: "Helvetica Neue",sans-serif;
+            font-weight: 100;
+
+        }
+
+        @keyframes arrow {
+            0%{
+                opacity: 1;
+                transform: translateY(5px);
+            }
+            50%{
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100%{
+                opacity: 1;
+                transform: translateY(5px);
+            }
+        }
+
+
+        .show-after-load {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: rgb(27,27,27);
+            z-index: 99999999999999999999999999999999999999999999999999999999;
+            top:0;
+            left: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .show-loader {
+            animation: show-content 400ms ease-in-out forwards 1;
+        }
+
+        @keyframes show-content {
+            0%{
+                width: 100%;
+            }
+            100%{
+                width: 0;
+            }
+        }
+
+
+        .show-after-load h1 {
+            color: white;
+            text-align: center;
+            font-size: 190px;
+            position: relative;
+            font-weight: 900;
+            text-transform: uppercase;
+            top: 50%;
+            left: 50%;
+            font-family: "Helvetica Neue",sans-serif;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            position: absolute;
+            margin: 0;
+        }
+        .show-after-load h1:before, .show-after-load h1:after {
+            content: attr(data-heading);
+            position: absolute;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .show-after-load h1:before {
+            -webkit-clip-path: polygon(0 0, 100% 0%, 100% 39%, 0 67%);
+            clip-path: polygon(0 0, 100% 0%, 100% 39%, 0 67%);
+            color: rgb(27,27,27);
+            text-shadow: 3px -2px 5px rgb(27,27,27), -3px 3px 4px rgb(27,27,27);
+            background: rgb(27,27,27);
+        }
+        .show-after-load h1:after {
+            -webkit-clip-path: polygon(0 0, 100% 0%, 100% 37%, 0 65%);
+            clip-path: polygon(0 0, 100% 0%, 100% 37%, 0 65%);
+            color: white;
+            -webkit-animation: fracture 5s infinite ease;
+            animation: fracture 5s infinite ease;
+        }
+
+        @-webkit-keyframes fracture {
+            0% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+            50% {
+                -webkit-transform: translate(-20px, 2%);
+                transform: translate(-20px, 2%);
+            }
+        }
+
+        @keyframes fracture {
+            0% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+            50% {
+                -webkit-transform: translate(-20px, 2%);
+                transform: translate(-20px, 2%);
+            }
+        }
+
+
+
+
+
+    </style>
+</head>
+
+
+<body>
+
+
+<div class="show-after-load">
+    <h1 contenteditable data-heading="PP">PP</h1>
+</div>
+
+<div class="letters">
+    <div><h1 style="animation-delay: 500ms;">P</h1></div>
+    <div><h1 style="animation-delay: 400ms;">E</h1></div>
+    <div><h1 style="animation-delay: 300ms;">R</h1></div>
+    <div><h1 style="animation-delay: 200ms;">F</h1></div>
+    <div><h1 style="animation-delay: 100ms;">P</h1></div>
+    <div><h1>R</h1></div>
+</div>
+
+<div class="nav">
+    <div class="logo">
+        <h1>PP</h1>
+    </div>
+
+    <a class='menu-trigger'>
+        <span>Menu</span>
+    </a>
+</div>
+
+<div class="bg">
+
+</div>
+<div class="bg bg2">
+
+</div>
+
+<div class="text">
+    <p> <span class="stylespan"> Unlock your potential </span><br/>
+        Technology led brand <br/>
+        transformation, inspired by
+        <span>  culture, driven by insights </span>
+    </p>
+</div>
+
+<div class="instructions">
+    <p>Scroll</p>
+    <div class="circle">
+        <h1>V</h1>
+    </div>
+</div>
+
+
+</body>
+<script
+        src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+<script>
+
+    $(window).on("load", function () {
+       $(".show-after-load").addClass("show-loader");
+       $(".letters div h1").addClass("show-letters");
+       $(".text p").addClass("move-letters");
+    });
+
+    var canvas = document.createElement("canvas");
+    var c = canvas.getContext('2d');
+
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    var imageData = c.createImageData(canvas.width, canvas.height);
+    document.body.appendChild(canvas);
+
+    function windowResize(){
+        window.addEventListener('resize', function () {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+        });
+    }
+
+    (function loop() {
+
+        for (var i = 0, a = imageData.data.length; i < a; i++) {
+            imageData.data[i] = (Math.random() * 105)|0;
+        }
+
+        c.putImageData(imageData, 0, 0);
+        windowResize();
+        requestAnimationFrame(loop);
+
+    })();
+
+    (function() {
+        $('.menu-trigger').on('click', function() {
+            return $(this).toggleClass('active');
+        });
+
+    }).call(this);
+
+</script>
+</html>
