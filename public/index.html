@@ -216,15 +216,6 @@
             font-weight: 900;
             letter-spacing: 5px;
             color: white;
-            text-shadow:
-                    0 0 2px rgba(255,255,255,1),
-                    0 0 10px rgba(255,255,255,1),
-                    0 0 20px rgba(255,255,255,1),
-                    0 0 30px rgba(255,255,255,1),
-                    0 0 40px white,
-                    0 0 70px white,
-                    0 0 80px white,
-                    0 0 100px white;
             text-transform: uppercase;
 
         }
@@ -248,15 +239,6 @@
             font-weight: 100;
             letter-spacing: 3px;
             font-size: 12px;
-            text-shadow:
-                    0 0 2px rgba(255,255,255,1),
-                    0 0 10px rgba(255,255,255,1),
-                    0 0 20px rgba(255,255,255,1),
-                    0 0 30px rgba(255,255,255,1),
-                    0 0 40px white,
-                    0 0 70px white,
-                    0 0 80px white,
-                    0 0 100px white;
         }
 
         .circle {
@@ -265,7 +247,7 @@
             width: 50px;
             height: 50px;
             border-radius: 100%;
-            border: 1px dotted white;
+            border: 1px dotted #49e6ae;
             background: none;
             text-align: center;
             box-shadow:0 0 8px white, inset 0 0 8px white;
@@ -290,7 +272,7 @@
 
         .circle h1 {
             font-size: 17px;
-            color: white;
+            color: #49e6ae;
             animation: arrow 2s ease-in-out forwards infinite;
             font-family: "Helvetica Neue",sans-serif;
             font-weight: 100;
@@ -489,40 +471,6 @@
 
     });
 
-    var canvas = document.createElement("canvas");
-    var c = canvas.getContext('2d');
-
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-
-    var imageData = c.createImageData(canvas.width, canvas.height);
-    document.body.appendChild(canvas);
-
-    function windowResize(){
-        window.addEventListener('resize', function () {
-            canvas.width = innerWidth;
-            canvas.height = innerHeight;
-        });
-    }
-
-    (function loop() {
-
-        for (var i = 0, a = imageData.data.length; i < a; i++) {
-            imageData.data[i] = (Math.random() * 65)|0;
-        }
-
-        c.putImageData(imageData, 0, 0);
-        windowResize();
-        requestAnimationFrame(loop);
-
-    })();
-
-    (function() {
-        $('.menu-trigger').on('click', function() {
-            return $(this).toggleClass('active');
-        });
-
-    }).call(this);
 
 </script>
 </html>
