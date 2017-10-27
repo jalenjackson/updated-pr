@@ -17,16 +17,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(http://www.goodnewsfinland.com/wp-content/uploads/2016/04/man-and-a-computer_iStock_by_DeanDrobot.jpg) center center no-repeat;
+            background:  url(http://www.goodnewsfinland.com/wp-content/uploads/2016/04/man-and-a-computer_iStock_by_DeanDrobot.jpg) center center no-repeat;
             background-size: cover;
             z-index: -1;
-            filter: grayscale(100%) brightness(20%);
+            filter:  brightness(100%);
         }
         .bg2 {
             position: fixed;
             top: 0;
             left: 0;
-            background: rgba(255,255,255,0.6) !important;
+            background: rgba(155,155,155,0.6) !important;
         }
 
         canvas {
@@ -85,7 +85,7 @@
 
         .letters div h1 {
             font-size: 150px;
-            color: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.2);
             margin-top: 100px;
             font-family: "Helvetica Neue", sans-serif;
             font-weight: 100;
@@ -213,18 +213,18 @@
         .stylespan{
             font-size: 14px;
             font-family: "Helvetica Neue",sans-serif;
-            font-weight: 100;
+            font-weight: 900;
             letter-spacing: 5px;
-            color: #49e6ae;
+            color: white;
             text-shadow:
                     0 0 2px rgba(255,255,255,1),
                     0 0 10px rgba(255,255,255,1),
                     0 0 20px rgba(255,255,255,1),
                     0 0 30px rgba(255,255,255,1),
-                    0 0 40px #49e6ae,
-                    0 0 70px #49e6ae,
-                    0 0 80px #49e6ae,
-                    0 0 100px #49e6ae;
+                    0 0 40px white,
+                    0 0 70px white,
+                    0 0 80px white,
+                    0 0 100px white;
             text-transform: uppercase;
 
         }
@@ -253,10 +253,10 @@
                     0 0 10px rgba(255,255,255,1),
                     0 0 20px rgba(255,255,255,1),
                     0 0 30px rgba(255,255,255,1),
-                    0 0 40px #49e6ae,
-                    0 0 70px #49e6ae,
-                    0 0 80px #49e6ae,
-                    0 0 100px #49e6ae;
+                    0 0 40px white,
+                    0 0 70px white,
+                    0 0 80px white,
+                    0 0 100px white;
         }
 
         .circle {
@@ -265,10 +265,10 @@
             width: 50px;
             height: 50px;
             border-radius: 100%;
-            border: 1px dotted #49e6ae;
+            border: 1px dotted white;
             background: none;
             text-align: center;
-            box-shadow:0 0 8px #49e6ae, inset 0 0 8px #49e6ae;
+            box-shadow:0 0 8px white, inset 0 0 8px white;
         }
 
         .circle::after {
@@ -276,21 +276,21 @@
             content: "";
             height: 100%;
             width: 1px;
-            box-shadow:0 0 8px #49e6ae, inset 0 0 8px #49e6ae;
+            box-shadow:0 0 8px white, inset 0 0 8px white;
             background: none;
             display: block;
             opacity: 0.3;
             margin: 0 auto;
             position: absolute;
             left: 0;
-            border: 1px dotted #49e6ae;
+            border: 1px dotted white;
             right: 0;
             top: 90px;
         }
 
         .circle h1 {
             font-size: 17px;
-            color: #49e6ae;
+            color: white;
             animation: arrow 2s ease-in-out forwards infinite;
             font-family: "Helvetica Neue",sans-serif;
             font-weight: 100;
@@ -508,7 +508,7 @@
     (function loop() {
 
         for (var i = 0, a = imageData.data.length; i < a; i++) {
-            imageData.data[i] = (Math.random() * 105)|0;
+            imageData.data[i] = (Math.random() * 65)|0;
         }
 
         c.putImageData(imageData, 0, 0);
