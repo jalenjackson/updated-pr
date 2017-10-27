@@ -325,16 +325,25 @@
             overflow: hidden;
         }
 
-        .show-loader {
-            animation: show-content 400ms ease-in-out forwards 1;
+
+        .show-slider {
+            animation: after 2s ease-in-out forwards;
         }
+
+        .show-loader {
+            animation: show-content 500ms ease-in-out forwards 1;
+        }
+
 
         @keyframes show-content {
             0%{
-                width: 100%;
+                opacity: 1;
+                transform: translateY(0px);
             }
             100%{
-                width: 0;
+                opacity: 0;
+                transform: translateY(-70px);
+
             }
         }
 
@@ -399,6 +408,13 @@
         }
 
 
+        .show-after-load-slide {
+            width: 100%;
+            height: 100%;
+            background: red;
+            z-index: 999999999999;
+        }
+
 
 
 
@@ -412,6 +428,7 @@
 <div class="show-after-load">
     <h1 contenteditable data-heading="PP">PP</h1>
 </div>
+
 
 <div class="letters">
     <div><h1 style="animation-delay: 500ms;">P</h1></div>
@@ -463,9 +480,13 @@
 <script>
 
     $(window).on("load", function () {
-       $(".show-after-load").addClass("show-loader");
-       $(".letters div h1").addClass("show-letters");
-       $(".text p").addClass("move-letters");
+        setTimeout(function () {
+            $(".show-after-load").addClass("show-loader");
+            $(".show-after-load:after").addClass("show-loader");
+            $(".letters div h1").addClass("show-letters");
+            $(".text p").addClass("move-letters");
+        },3000);
+
     });
 
     var canvas = document.createElement("canvas");
